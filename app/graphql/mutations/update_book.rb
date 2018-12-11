@@ -5,16 +5,17 @@ class Mutations::UpdateBook < Mutations::BaseMutation
   argument :author_id, ID, required: true
   argument :title, String, required: false
   argument :genre, String, required: false
+  argument :description, String, required: false
 
   field :book, BookType, null: true
   field :errors, [String], null: false
 
-  def resolve(id:, author_id:, title:, genre:)
+  def resolve(id:, author_id:, title:, genre:, description:)
     book = Book.find_by_id(id)
 
     if book
       if book.author_id == author_id.to_i
-        book.update(title: title, genre: genre)
+        book.update(title: title, genre: genre, description: description)
         {
           book: book,
           errors: []

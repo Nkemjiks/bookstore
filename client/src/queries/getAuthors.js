@@ -5,6 +5,9 @@ export default gql`
     authors {
       id
       name
+      books {
+        id
+      }
     }
   }
 `;

@@ -56,16 +56,22 @@ class Author extends Component {
               
               <Card.Group centered>
               {
-                books.map(({ id, title, genre }) => (
+                books.length > 0 ? books.map(({ id, title, genre, description }) => (
                   <Card key={id}>
                     <Card.Content>
                       <Card.Header>{title}</Card.Header>
                     </Card.Content>
                     <Card.Content extra>
+                      <Card.Description>{description}</Card.Description>
+                    </Card.Content>
+                    <Card.Content extra>
                       <Card.Description>{genre}</Card.Description>
                     </Card.Content>
                   </Card>
-                ))
+                )) : 
+                <div>
+                  <Header as='p'>There is no book by this author yet</Header>
+                </div>
               }
               </Card.Group>
             </Container>
